@@ -1,0 +1,155 @@
+@charset "UTF-8";
+/* CSS Document */
+/*******************************/
+/*
+		Name:  Thomas Mielke
+		Class:  TECH 273
+        Date:  21NOV2023
+		Proj:   Project 5	
+*/
+/*******************************/
+
+/* COLORS
+
+
+Green: rgb(67, 175, 59)
+Dark Gray: rgb(56,56,56)
+
+*/
+
+/* FONTS */
+
+@font-face { 
+    src: url(../fonts/RaceStripe.ttf);
+    font-family: RaceStripe;
+  }
+
+  @font-face { 
+    src: url(../fonts/RaceSport.ttf);
+    font-family: RaceSport;
+  }
+
+/* ELEMENTS  */
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(67, 175, 59);
+}
+
+img {
+    height: 40px;
+}
+
+section {
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-family: "RaceStripe";
+    font-size: 3rem;
+    background-color: whitesmoke;
+    padding: 1rem 2rem;
+    border: 4px solid black;
+    border-radius: 4px;
+    text-decoration: underline;
+}
+
+h2 {
+    font-family: "RaceSport";
+    letter-spacing: 0.2rem;
+    font-size: 2rem;
+    text-decoration: underline;
+    color: whitesmoke;
+}
+
+button {
+    font-family: "RaceSport";
+    padding: 1rem 2rem;
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0.4rem 0.4rem rgb(56,56,56);
+}
+
+a {
+    font-family: "RaceSport";
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0.4rem 0.4rem rgb(56,56,56);
+}
+
+button:active {
+    position: relative;
+    top: 0.4rem;
+    box-shadow: none;
+}
+
+a:active {
+    position: relative;
+    top: 0.4rem;
+    box-shadow: none;
+}
+
+button:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+a:hover {
+   text-decoration: underline;
+   text-underline-offset: 3px;
+}
+
+/*  CONTAINERS */
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    height: 100vh;
+    width: 100%;
+    gap: 0.2rem;
+}
+
+.victory-container {
+    justify-content: space-around;
+}
+
+.track-container {
+    display: flex;
+    justify-content: center;
+}
+
+#action-button {
+    display: flex;
+    height: 18vh;
+    align-items: center;
+}
+
+/*  SELECTORS */
+
+body.checkered-flag {
+    background-image: url(../images/checkeredflag.jpg);
+}
+
+.race-block {
+    width: 16%;
+    border-bottom: 4px solid black;
+}
+
+.logo-image {
+    height: 25vh;
+    border: 4px solid black;
+    border-radius: 4px;
+}
+
+.victory-car {
+    height: 25vh;
+}

@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!--
+			Name: Thomas Mielke
+			Class: TECH 273
+			Date: 21NOV2023
+			Proj: Project 5 - Array Race
+		-->
+        <title>Project 5: The Great Array Race</title>
+        <link rel="stylesheet" href="./css/style.css"> <!-- Link to the external style sheet -->
+    </head>
+
+    <body>
+        <div class="flex-container"> <!-- flex-container is used to center the content with flex box-->
+                <h1>The Great Array Race</h1>
+                <section id="mclaren-container"> <!-- Section that allows each team's track to stack ontop of each other in the flex-container -->
+                    <h2>McLaren</h2>
+                    <div class="track-container"> <!-- container for McLaren track, broken into 6 sections for the cars to move along -->
+                         <div id="mclaren0" class="race-block"><img src="./images/mclarencar.png" alt="McLaren Racecar"></div> <!-- McLaren car picture that gets deleted as the car moves forward on the track -->
+                        <div id="mclaren1" class="race-block"></div>
+                        <div id="mclaren2" class="race-block"></div>
+                        <div id="mclaren3" class="race-block"></div>
+                        <div id="mclaren4" class="race-block"></div>
+                        <div id="mclaren5" class="race-block"></div>
+                    </div> <!-- end of McLaren track container -->
+                </section> <!-- end of mclaren-container section -->
+                <section id="mercedes-container"> <!-- Section that allows each team's track to stack ontop of each other in the flex-container -->
+                    <h2>Mercedes</h2>
+                    <div class="track-container"> <!-- container for Mercedes track, broken into 6 sections for the cars to move along -->
+                        <div id="mercedes0" class="race-block"><img src="./images/mercedescar.png" alt="Mercedes Racecar"></div> <!-- Mercedes car picture that gets deleted as the car moves forward on the track -->
+                        <div id="mercedes1" class="race-block"></div>
+                        <div id="mercedes2" class="race-block"></div>
+                        <div id="mercedes3" class="race-block"></div>
+                        <div id="mercedes4" class="race-block"></div>
+                        <div id="mercedes5" class="race-block"></div>
+                    </div> <!-- end of Mercedes track container -->
+                </section> <!-- end of mercedes-container section -->
+                <section id="williams-container"> <!-- Section that allows each team's track to stack ontop of each other in the flex-container -->
+                    <h2>Williams</h2>
+                    <div class="track-container"> <!-- container for Williams track, broken into 6 sections for the cars to move along -->
+                        <div id="williams0" class="race-block"><img src="./images/williamscar.png" alt="Williams Racecar"></div> <!-- Williams car picture that gets deleted as the car moves forward on the track -->
+                        <div id="williams1" class="race-block"></div>
+                        <div id="williams2" class="race-block"></div>
+                        <div id="williams3" class="race-block"></div>
+                        <div id="williams4" class="race-block"></div>
+                        <div id="williams5" class="race-block"></div>
+                    </div> <!-- end of Williams track container -->
+                </section> <!-- end of williams-container section -->
+                <div id="action-button"> <!-- container that allows me to use flex box to center the content under the tracks regardless of whether the content is a button or link -->
+                    <button onClick="startRace()">Race!</button> <!-- button that runs the startRace() function defined in the script section -->
+                </div> <!-- end of action-button -->
+        </div> <!-- end of flex-container -->
+        <!-- links the Javascript file to the HTML file -->
+        <script src="./js/script.js"></script> <!-- Links the external JavaScript document to the html document -->
+        <script> // Start of the internal JavaScript section
+        /**********************************************************************			
+            Function Name: startRace()
+            Parameters: None
+            Return Value: None
+            Description: This function creates three arrays. Using an external function called randomNumber1to3(), a random number is chosen and assigned to a variable called randomNumber. Depending on the number assigned, that number is appended to the end of one of the arrays. This loop runs until one of the arrays hits a length of 5. Once that happens, the loop is broken, and a winner is chosen. The action-button div in the html is populated with a link to the victory html page for whichever team won.
+        **********************************************************************/
+            function startRace() { //start of the function startRace() which is called by the button at the bottom of the flex container.
+                const mclarenArray = [];
+                const mercedesArray = [];  
+                const williamsArray = []; //These three lines create three empty arrays that will be filled later in the function
+
+                let mclarenPlace = mclarenArray.length;
+                let mercedesPlace =  mercedesArray.length; 
+                let williamsPlace = williamsArray.length; // These three lines assign the length of each of the three arrays to a variable so the length is easier to access later in the function.
+
+                let oldMclarenTrackPlace
+                let newMclarenTrackPlace
+                let oldMercedesTrackPlace 
+                let newMercedesTrackPlace
+                let oldWilliamsTrackPlace
+                let newWilliamsTrackPlace // These 6 lines declare empty variables that will later be used to store the html elements that need to be changed based on the location of each car in the race.
+
+            while (mclarenPlace < 5 && mercedesPlace < 5 && williamsPlace < 5) { // Start of the while loop. Runs until one of the five arrays hits a length of 5 (the array[4] space is filled).
+
+                let randomNumber = randomNumber1to6(); // This line calls the randomNumber1to3() function from the external JavaScript file and assigns a number 1, 2, 3, 4, 5, or 6 to the randomNumber variable.
+
+                        if (randomNumber == 1) { // Start of if statement that alters what happens based on the number that was assigned to randomNumber
+                            mclarenArray.push(randomNumber); // if randomNumber is equal to 1, a 1 gets added to the end of the mclaren array.
+                        } else if (randomNumber == 2) {
+                            mercedesArray.push(randomNumber); // if randomNumber is equal to 2, a 2 gets added to the end of the mercedes array.
+                        } else if (randomNumber == 3) {  
+                            williamsArray.push(randomNumber); // if randomNumber is equal to 3, a 3 gets added to the end of the williams array.
+                        } else if (randomNumber == 4) {
+                            mclarenArray.pop(); // if randomNumber is equal to 4, the last value in the mclarenArray gets removed (making the length of the array one shorter)
+                        } else if (randomNumber == 5) { 
+                            mercedesArray.pop(); // if randomNumber is equal to 5, the last value in the mercedesArray gets removed (making the length of the array one shorter)
+                        } else  {
+                            williamsArray.pop(); // if randomNumber is equal to anything other than 1, 2, 3, 4, or 5 (the only other possibility is 6), the last value in the williamsArray gets removed (making the length of the array one shorter)
+                        }
+
+                        mclarenPlace = mclarenArray.length;
+                        mercedesPlace = mercedesArray.length;
+                        williamsPlace = williamsArray.length; // These three lines update the variables that store the length of each of the arrays after a number is added to the end of one of them in the if statement.
+                        
+                        console.log('randomNumber: ' + randomNumber);
+                        console.log(mclarenArray);
+                        console.log('McLaren Place: ' + mclarenPlace);
+                        console.log(mercedesArray);
+                        console.log('Mercedes Place: ' + mercedesPlace);
+                        console.log(williamsArray);
+                        console.log('Williams Place: ' + williamsPlace);
+                        console.log('********************************'); // All the above lines were added so that I could see that the function was doing what I had intended it to do. I left them in the code so that anybody looking at the code could inspect the console to see that it is adding onto the arrays like it should be.
+                        
+
+                        // In the code below, I had to use an if statement for all of them because if the length of the array was 0, the code would be looking for an html element with the id of mclaren-1 (which doesn't exist). By putting it in the if statements, I ensure that the location of the cars is only updated if the length of the array dictates that it should no longer be in the starting position.
+
+                        if (mclarenPlace > 0) { // Beginning of if statement that updates the position of mclarencar.png on the track.
+                            if (randomNumber == 4) { // Checks to see if the randomNumber variable says that the mclarencar.png needs to go back a place.
+                                oldMclarenTrackPlace = document.getElementById('mclaren' + (mclarenPlace + 1)); // stores the html element of old position of the car based on the current value of mclarenPlace plus 1 because the car is moving back.
+                                newMclarenTrackPlace = document.getElementById('mclaren' + mclarenPlace); // stores the html element of the new track position using the updated value of mclarenPlace.
+                                oldMclarenTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                                newMclarenTrackPlace.innerHTML = '<img src="./images/mclarencar.png" alt="McLaren Racecar">'; // Adds the image of the mclaren car to the html element that corresponds to the new value of mclarenPlace.
+                            } else if (randomNumber == 1) { // Updates the position of the car if the car moves forward
+                                 oldMclarenTrackPlace = document.getElementById('mclaren' + (mclarenPlace - 1)); // stores the html element of old position of the car based on the current value of mclarenPlace minus 1.
+                                newMclarenTrackPlace = document.getElementById('mclaren' + mclarenPlace); // stores the html element of the new track position using the updated value of mclarenPlace. 
+                                oldMclarenTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                                newMclarenTrackPlace.innerHTML = '<img src="./images/mclarencar.png" alt="McLaren Racecar">'; // Adds the image of the mclaren car to the html element that corresponds to the new value of mclarenPlace.
+                            }                         
+                        } else {  // Added the else section so that  the car image in spot one could be erased if the value of mclarenPlace goes from 1 to 0
+                            oldMclarenTrackPlace = document.getElementById('mclaren1'); // stores the html element of old position of the car based on the current value of mclarenPlace plus 1 because the car is moving back.
+                            newMclarenTrackPlace = document.getElementById('mclaren0'); // stores the html element of the new track position using the updated value of mclarenPlace.
+                            oldMclarenTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                            newMclarenTrackPlace.innerHTML = '<img src="./images/mclarencar.png" alt="McLaren Racecar">'; // Adds the image of the mclaren car to the html element that corresponds to the new value of mclarenPlace.
+                        }
+
+                        if (mercedesPlace > 0) { // Beginning of if statement that updates the position of mercedescar.png on the track.
+                            if (randomNumber == 5) { // Checks to see if the randomNumber variable says that the mercedescar.png needs to go back a place.
+                                oldMercedesTrackPlace = document.getElementById('mercedes' + (mercedesPlace + 1)); // stores the html element of old position of the car based on the current value of mercedesPlace plus 1 because the car is moving back.
+                                newMercedesTrackPlace = document.getElementById('mercedes' + mercedesPlace); // stores the html element of the new track position using the updated value of mercedesPlace.
+                                oldMercedesTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                                newMercedesTrackPlace.innerHTML = '<img src="./images/mercedescar.png" alt="Mercedes Racecar">'; // Adds the image of the mclaren car to the html element that corresponds to the new value of mercedesPlace.
+                            } else if (randomNumber == 2) { // Updates the position of the car if the car moves forward
+                                oldMercedesTrackPlace = document.getElementById('mercedes' + (mercedesPlace - 1)); // stores the html element of old position of the car based on the current value of mercedesPlace minus 1.
+                                newMercedesTrackPlace = document.getElementById('mercedes' + mercedesPlace); // stores the html element of the new track position using the updated value of meredesPlace. 
+                                oldMercedesTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                                newMercedesTrackPlace.innerHTML = '<img src="./images/mercedescar.png" alt="Mercedes Racecar">';// Adds the image of the mclaren car to the html element that corresponds to the new value of mcercedesPlace.
+                            } 
+                        } else { // Added the else section so that  the car image in spot one could be erased if the value of mercedesPlace goes from 1 to 0
+                            oldMercedesTrackPlace = document.getElementById('mercedes1'); // stores the html element of old position of the car based on the current value of mercedesPlace plus 1 because the car is moving back.
+                            newMercedesTrackPlace = document.getElementById('mercedes0'); // stores the html element of the new track position using the updated value of mercedesPlace.
+                            oldMercedesTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                            newMercedesTrackPlace.innerHTML = '<img src="./images/mercedescar.png" alt="Mercedes Racecar">'; // Adds the image of the mercedes car to the html element that corresponds to the new value of mercedesPlace.
+                        }
+
+                        if (williamsPlace > 0) { // Beginning of if statement that updates the position of williamscar.png on the track.
+                            if (randomNumber == 6) {
+                                oldWilliamsTrackPlace = document.getElementById('williams' + (williamsPlace + 1)); // stores the html element of old possition of the car based on the current value of williamsPlace plus 1 because the car is moving back.
+                                newWilliamsTrackPlace = document.getElementById('williams' + williamsPlace); // stores the html element of the new track position using the updated value of williamsPlace.
+                                oldWilliamsTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                                newWilliamsTrackPlace.innerHTML = '<img src="./images/williamscar.png" alt="Williams Racecar">'; // Adds the image of the mclaren car to the html element that corresponds to the new value of williamsPlace.
+                            } else if (randomNumber == 3) { // Updates the position of the car if the car moves forward
+                                oldWilliamsTrackPlace = document.getElementById('williams' + (williamsPlace - 1)); // stores the html element of old position of the car based on the current value of williamsPlace minus 1.
+                                newWilliamsTrackPlace = document.getElementById('williams' + williamsPlace); // stores the html element of the new track position using the updated value of williamsPlace. 
+                                oldWilliamsTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                                newWilliamsTrackPlace.innerHTML = '<img src="./images/williamscar.png" alt="Williams Racecar">'; // Adds the image of the williams car to the html element that corresponds to the new value of williamsPlace.
+                            }   
+                        } else { // Added the else section so that  the car image in spot one could be erased if the value of williamsPlace goes from 1 to 0
+                            oldMercedesTrackPlace = document.getElementById('williams1'); // stores the html element of old position of the car based on the current value of williamsPlace plus 1 because the car is moving back.
+                            newMercedesTrackPlace = document.getElementById('williams0'); // stores the html element of the new track position using the updated value of williamsPlace.
+                            oldMercedesTrackPlace.innerHTML = ''; // Removes all code in the div that contained the picture of the car before the most recent iteration of the while loop.
+                            newMercedesTrackPlace.innerHTML = '<img src="./images/williamscar.png" alt="Williams Racecar">'; // Adds the image of the williams car to the html element that corresponds to the new value of williamsPlace.
+                        }
+
+            }
+                // Once one of the arrays hits a length of 5, the while loop is stopped, and the fallowing if/else statements are evaluated
+                if (mclarenPlace == 5) { // If the mclaren array reaches a length of 5 first, the following actions are taken:
+                    let actionButton = document.getElementById('action-button'); // variable that grabs the html div element that holds the button that called the function.
+                    actionButton.innerHTML = '<a href="./html/mclarenvictory.html">Victory Page!</a>'; // Replaces the original button with a link to the winning mclaren page
+                    console.log("Winner: McLaren"); // logs the winner in the console so anybody looking at the console can see which array won.
+                } else if (mercedesPlace == 5) {  // If the mercedes array reaches a length of 5 first, the following actions are taken:
+                    let actionButton = document.getElementById('action-button'); // variable that grabs the html div element that holds the button that called the function.
+                    actionButton.innerHTML = '<a href="./html/mercedesvictory.html">Victory Page!</a>'; // Replaces the original button with a link to the winning mercedes page
+                    console.log("Winner: Mercedes");// logs the winner in the console so anybody looking at the console can see which array won.
+                } else { // If the williams array reaches a length of 5 first, the following actions are taken:
+                    let actionButton = document.getElementById('action-button'); // variable that grabs the html div element that holds the button that called the function.
+                    actionButton.innerHTML = '<a href="./html/williamsvictory.html">Victory Page!</a>'; // Replaces the original button with a link to the winning williams page
+                    console.log("Winner: Williams");// logs the winner in the console so anybody looking at the console can see which array won.
+                }
+            } // End of startRace() function
+        </script> <!-- End of the internal JavaScript section -->
+    </body>
+</html>
